@@ -77,6 +77,34 @@ Contáctame:
 -->
 
 <body>
+<audio id="backgroundMusic" controls autoplay loop>
+    <source src="TOED.mp3" type="audio/mpeg">
+    Tu navegador no soporta el elemento de audio.
+</audio>
+
+<script>
+// Script para intentar reproducir automáticamente el audio
+document.addEventListener('DOMContentLoaded', function() {
+    const audio = document.getElementById('backgroundMusic');
+    
+    // Intentar reproducir automáticamente
+    const playPromise = audio.play();
+    
+    if (playPromise !== undefined) {
+        playPromise.then(function() {
+            console.log('Música reproduciéndose automáticamente');
+        }).catch(function(error) {
+            console.log('Reproducción automática bloqueada, se necesita interacción del usuario');
+            
+            // Si la reproducción automática falla, reproducir cuando el usuario haga clic
+            document.addEventListener('click', function() {
+                audio.play();
+            }, { once: true });
+        });
+    }
+});
+</script>
+
     <div id="main">
         <div id="error">
             Tu navegador que estás usando no es compatible con el contenido que se va a mostrar. 
@@ -153,22 +181,6 @@ Contáctame:
     <script src="script.js"></script>
 </body>
 
- <!-- 
 
-Contáctame:
-
-    * Invitame un café
- https://buymeacoffee.com/alexx.dev
-
-    * Portafolio Web
- https://alexxdev.vercel.app
-
-    * Sigueme en tiktok
- https://www.tiktok.com/@alexx.dev?is_from_webapp=1&sender_device=pc 
- 
-    *Canal de WhatsApp
- https://whatsapp.com/channel/0029VazQEXq90x2vIdNkrH1p
-
--->
 
 </html>
